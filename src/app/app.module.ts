@@ -9,8 +9,9 @@ import { MaterialModule } from './material.module';
 import { LoginComponent } from './Auth/login/login.component';
 import { SignupComponent } from './Auth/signup/signup.component';
 import { AppStartComponent } from './app-start/app-start.component';
-import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavComponent } from './navigation/sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     SignupComponent,
     AppStartComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
