@@ -12,6 +12,10 @@ import { AppStartComponent } from './app-start/app-start.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavComponent } from './navigation/sidenav/sidenav.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AdminComponent } from './roles/admin/admin.component';
+import { ClientComponent } from './roles/client/client.component';
+import { AuthInterceptor } from './Auth/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,9 @@ import { SidenavComponent } from './navigation/sidenav/sidenav.component';
     SignupComponent,
     AppStartComponent,
     HeaderComponent,
-    SidenavComponent
+    SidenavComponent,
+    AdminComponent,
+    ClientComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +34,10 @@ import { SidenavComponent } from './navigation/sidenav/sidenav.component';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
