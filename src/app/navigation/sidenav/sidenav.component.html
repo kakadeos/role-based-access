@@ -3,16 +3,28 @@
       <mat-icon>home</mat-icon>
       <span class='nav-caption'>Home</span>
     </a>
-    <a mat-list-item routerLink='/login' (click)='onClose()'>
+    <a mat-list-item routerLink='/login' *ngIf='!userIsAuthenticated' (click)='onClose()'>
       <mat-icon>input</mat-icon>
       <span class='nav-caption'>Login</span>
     </a>
-    <a mat-list-item routerLink='/signup' (click)='onClose()'>
+    <a mat-list-item routerLink='/signup' *ngIf='!userIsAuthenticated' (click)='onClose()'>
       <mat-icon>face</mat-icon>
       <span class='nav-caption'>Signup</span>
     </a>
-    <mat-list-item>
-        <button mat-icon-button (click)='onClose()'>
+    <a mat-list-item routerLink='/admin' *ngIf='userIsAuthenticated' (click)='onClose()'>
+      <mat-icon>verified_user</mat-icon>
+      <span class='nav-caption'>Admin</span>
+    </a>
+    <a mat-list-item routerLink='/client' *ngIf='userIsAuthenticated' (click)='onClose()'>
+      <mat-icon>account_box</mat-icon>
+      <span class='nav-caption'>Client</span>
+    </a>
+    <a mat-list-item routerLink='/changePassword' *ngIf='userIsAuthenticated' (click)='onClose()'>
+      <mat-icon>autorenew</mat-icon>
+      <span class='nav-caption'>Change Password</span>
+    </a>
+    <mat-list-item *ngIf='userIsAuthenticated'>
+        <button mat-icon-button (click)='onLogout()'>
             <mat-icon>eject</mat-icon>
             <span class='nav-caption'>Logout</span>
         </button>

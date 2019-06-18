@@ -25,6 +25,9 @@
           <a routerLink='/client'>Client</a>
         </li>
         <li *ngIf='userIsAuthenticated'>
+          <a routerLink='/changePassword'>Change Password</a>
+        </li>
+        <li *ngIf='userIsAuthenticated'>
           <a (click)='onLogout()'>Logout</a>
         </li>
       </ul>

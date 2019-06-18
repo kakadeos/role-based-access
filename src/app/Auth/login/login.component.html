@@ -1,19 +1,26 @@
-<section class='signup-form'>
-  <form fxLayout='column' fxLayoutAlign='center center' fxLayoutGap='1%'
-   #loginForm='ngForm' (ngSubmit)='onLogin(loginForm)'>
-    <mat-form-field>
-      <input type="email" matInput placeholder="Enter your Email ID" ngModel name='email' email required
-        #emailInput='ngModel'>
-      <mat-error *ngIf="!emailInput.hasError('required')">Please enter valid Email Address.</mat-error>
-      <mat-error *ngIf="emailInput.hasError('required')">Email is required.</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input type="password" matInput placeholder="Enter your Password" ngModel name='password' required minlength='6'
-        #passwordInput='ngModel'>
-      <mat-error *ngIf="passwordInput.hasError('required')">Password must be required.</mat-error>
-      <mat-error *ngIf="!passwordInput.hasError('required')">Password must be 6 Characters long.</mat-error>
-    </mat-form-field>
-
-    <button type='submit' mat-raised-button color='primary' [disabled]='loginForm.invalid'>Log In</button>
-  </form>
+<section class="login-form" fxLayout='column' fxLayoutGap='10px' fxLayoutAlign='center center'>
+  <mat-card fxLayout='column' fxLayoutGap='10px' fxLayoutAlign='center center'>
+      <mat-card-header fxLayout='column' fxLayoutAlign='center'>
+          <div mat-card-avatar class="example-header-image"></div>
+        </mat-card-header>
+        <mat-card-content>
+          <form fxLayout='column' fxLayoutAlign='center center' fxLayoutGap='1%'
+          #loginForm='ngForm' (ngSubmit)='onLogin(loginForm)'>
+           <mat-form-field>
+             <input type="email" matInput placeholder="Enter your Email ID" ngModel name='email' email required
+               #emailInput='ngModel'>
+             <mat-error *ngIf="!emailInput.hasError('required')">Please enter valid Email Address.</mat-error>
+             <mat-error *ngIf="emailInput.hasError('required')">Email is required.</mat-error>
+           </mat-form-field>
+           <mat-form-field>
+             <input type="password" matInput placeholder="Enter your Password" ngModel name='password' required minlength='6'
+               #passwordInput='ngModel'>
+             <mat-error *ngIf="passwordInput.hasError('required')">Password must be required.</mat-error>
+             <mat-error *ngIf="!passwordInput.hasError('required')">Password must be 6 Characters long.</mat-error>
+           </mat-form-field>
+           <button type='submit' mat-raised-button color='primary' [disabled]='loginForm.invalid'>Log In</button>
+                <a (click)="forgotPassword()">Forgot Password ?</a>
+              </form>
+        </mat-card-content>
+  </mat-card>
 </section>
