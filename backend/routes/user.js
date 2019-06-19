@@ -46,12 +46,13 @@ router.post('/login', (req, res, next) => {
     })
     .then(user => {
       if (!user) {
+        fetchedUser = null;
         return res.status(401).json({
           message: 'Please Enter Valid Email ID and Password'
         });
       }
       fetchedUser = user;
-      return bcrypt.compare(req.body.password, user.password)
+      return bcrypt.compare(req.body.password, user.password);
     })
     .then(result => {
       if (!result) {
@@ -59,19 +60,17 @@ router.post('/login', (req, res, next) => {
           message: 'Please Enter valid Email ID and Password.'
         });
       }
-      const token = jwt.sign({
-        email: fetchedUser.email,
-        userId: fetchedUser._id
-      }, 'PROJECT_LOGIN', {
-        expiresIn: '24h'
-      });
+      if(fetchedUser != null) {
+        const token = jwt.sign({email: fetchedUser.email, userId: fetchedUser._id}, 'PROJECT_LOGIN', {expiresIn: '24h'});
       res.status(200).json({
         token: token,
         expiresIn: 86400,
         userId: fetchedUser._id
       });
+      }
     })
     .catch(error => {
+      console.log(error);
       return res.status(401).json({
         message: 'Auth Failed'
       });
