@@ -3,6 +3,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const checkAuth = require('../middleware/check-auth');
+const sendPasswordResetEmail = require('../middleware/sendEmail');
 
 const router = express.Router();
 
@@ -128,10 +129,12 @@ router.post('/forgotPassword', (req, res, next) => {
                 password: hash
               }).then(
                 response => {
-                  return res.status(200).json({
-                    message: 'Password Sent to Email ID.',
-                    response: response
-                  });
+                  const result = sendPasswordResetEmail(fetchedUser.email, randomString);
+                      if(!result){
+                        return res.status(400).json({message: 'Oops Error occured. Please try again.', response: response});
+                      } else {
+                        return res.status(200).json({message: 'Password Sent to Email ID.', response: response});
+                      }
                 },
                 error => {
                   return res.status(400).json({
