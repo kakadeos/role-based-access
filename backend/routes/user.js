@@ -9,14 +9,17 @@ const router = express.Router();
 
 
 router.post('/signup', (req, res, next) => {
+  console.log('here');
   bcrypt.hash(req.body.password, 10)
     .then((hash) => {
       const user = new User({
         email: req.body.email,
-        password: hash
+        password: hash,
+        role: 'admin'
       });
       user.save()
         .then(result => {
+          console.log(result);
           res.status(201).json({
             message: 'User Created Succefully. Please login.',
             result: result
@@ -66,7 +69,8 @@ router.post('/login', (req, res, next) => {
       res.status(200).json({
         token: token,
         expiresIn: 86400,
-        userId: fetchedUser._id
+        userId: fetchedUser._id,
+        role: fetchedUser.role
       });
       }
     })

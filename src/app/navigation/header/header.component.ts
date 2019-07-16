@@ -13,6 +13,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private authListenerSubs : Subscription;
   userIsAuthenticated = false;
+  private roleListnerSubs: Subscription;
+  userRole = '';
   constructor(public authService : AuthService) { }
 
   ngOnInit() {
@@ -21,6 +23,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     });
+    this.userRole = this.authService.getRole();
+    this.roleListnerSubs = this.authService.getRoleListener()
+    .subscribe(role => {
+      this.userRole = role;
+    });
+    console.log(this.userRole);
   }
 
   onToggleSideNav() {

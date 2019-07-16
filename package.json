@@ -1,5 +1,5 @@
 {
-  "name": "project-login",
+  "name": "role-based-access-project",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
