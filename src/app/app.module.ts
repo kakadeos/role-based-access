@@ -16,6 +16,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminComponent } from './roles/admin/admin.component';
 import { ClientComponent } from './roles/client/client.component';
 import { AuthInterceptor } from './Auth/auth-interceptor';
+import { ForgotPasswordComponent } from './Auth/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './Auth/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { AuthInterceptor } from './Auth/auth-interceptor';
     HeaderComponent,
     SidenavComponent,
     AdminComponent,
-    ClientComponent
+    ClientComponent,
+    ForgotPasswordComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,7 @@ import { AuthInterceptor } from './Auth/auth-interceptor';
     HttpClientModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ForgotPasswordComponent]
 })
 export class AppModule { }
