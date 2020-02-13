@@ -12,6 +12,9 @@ export class SidenavComponent implements OnInit, OnDestroy {
   @Output() sideNavClose = new EventEmitter<void>();
   public userIsAuthenticated = false;
   private authListnerSub: Subscription;
+  private roleListnerSubs: Subscription;
+  userRole = '';
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
@@ -20,6 +23,12 @@ export class SidenavComponent implements OnInit, OnDestroy {
     .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     });
+    this.userRole = this.authService.getRole();
+    this.roleListnerSubs = this.authService.getRoleListener()
+    .subscribe(role => {
+      this.userRole = role;
+    });
+    //console.log(this.userRole);
   }
 
   onClose() {

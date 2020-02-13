@@ -11,11 +11,11 @@
       <mat-icon>face</mat-icon>
       <span class='nav-caption'>Signup</span>
     </a>
-    <a mat-list-item routerLink='/admin' *ngIf='userIsAuthenticated' (click)='onClose()'>
+    <a mat-list-item routerLink='/admin' *ngIf="userIsAuthenticated && userRole==='admin'" (click)='onClose()'>
       <mat-icon>verified_user</mat-icon>
       <span class='nav-caption'>Admin</span>
     </a>
-    <a mat-list-item routerLink='/client' *ngIf='userIsAuthenticated' (click)='onClose()'>
+    <a mat-list-item routerLink='/client' *ngIf="userIsAuthenticated && userRole==='client'" (click)='onClose()'>
       <mat-icon>account_box</mat-icon>
       <span class='nav-caption'>Client</span>
     </a>
